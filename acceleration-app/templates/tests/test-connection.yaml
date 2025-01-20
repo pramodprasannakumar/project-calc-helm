@@ -1,0 +1,11 @@
+# test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-connection
+spec:
+  containers:
+  - name: test-connection
+    image: curlimages/curl:latest
+    command: ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "http://acceleration-calc:{{ .Values.accelerationCalc.port }}"]
+  restartPolicy: Never

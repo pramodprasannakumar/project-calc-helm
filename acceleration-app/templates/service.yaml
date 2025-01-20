@@ -1,0 +1,39 @@
+# templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.accelerationDv.name }}
+spec:
+  selector:
+    app: {{ .Values.accelerationDv.name }}
+  ports:
+  - name: http
+    port: {{ .Values.accelerationDv.port }}
+    targetPort: {{ .Values.accelerationDv.port }}
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.accelerationA.name }}
+spec:
+  selector:
+    app: {{ .Values.accelerationA.name }}
+  ports:
+  - name: http
+    port: {{ .Values.accelerationA.port }}
+    targetPort: {{ .Values.accelerationA.port }}
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.accelerationCalc.name }}
+spec:
+  selector:
+    app: {{ .Values.accelerationCalc.name }}
+  ports:
+  - name: http
+    port: {{ .Values.accelerationCalc.port }}
+    targetPort: {{ .Values.accelerationCalc.port }}
+  type: LoadBalancer

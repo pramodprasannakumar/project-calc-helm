@@ -1,0 +1,8 @@
+# Chart.yaml
+name: acceleration-app
+version: 1.0.0
+description: Acceleration application with microservices
+
+values:
+  service:
+    port: 3000

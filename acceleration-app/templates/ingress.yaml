@@ -1,0 +1,20 @@
+# ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: acceleration-app
+  annotations:
+    networking.k8s.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/enable-validation: "false"
+spec:
+  rules:
+  - host: acceleration-app
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: acceleration-app-service
+            port:
+              number: 80

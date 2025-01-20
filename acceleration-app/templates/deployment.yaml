@@ -1,0 +1,60 @@
+# templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.accelerationDv.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.accelerationDv.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.accelerationDv.name }}
+    spec:
+      containers:
+      - name: {{ .Values.accelerationDv.name }}
+        image: {{ .Values.accelerationDv.image }}
+        ports:
+        - containerPort: {{ .Values.accelerationDv.port }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.accelerationA.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.accelerationA.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.accelerationA.name }}
+    spec:
+      containers:
+      - name: {{ .Values.accelerationA.name }}
+        image: {{ .Values.accelerationA.image }}
+        ports:
+        - containerPort: {{ .Values.accelerationA.port }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.accelerationCalc.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.accelerationCalc.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.accelerationCalc.name }}
+    spec:
+      containers:
+      - name: {{ .Values.accelerationCalc.name }}
+        image: {{ .Values.accelerationCalc.image }}
+        ports:
+        - containerPort: {{ .Values.accelerationCalc.port }}
